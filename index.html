@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verdant & Stone | Premium Lawn Care</title>
+    <link rel="icon"
+        href="https://www.codewithfaraz.com/tools/placeholder?size=32x32&bgColor=1a4c3e&textColor=ffffff&text=VS"
+        type="image/png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700&family=Oswald:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'v-dark': '#0f1715', // Very dark green/black
+                        'v-green': '#1a4c3e', // Elegant Emerald
+                        'v-accent': '#d4cbb8', // Stone/Beige
+                        'v-light': '#f5f5f0', // Off-white
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="text-v-dark antialiased">
+
+    <!-- Preloader -->
+    <div class="loader" id="loader">
+        <div class="text-v-accent font-display text-3xl tracking-widest uppercase">
+            Verdant & Stone
+        </div>
+        <div class="loader-bar-bg">
+            <div class="loader-bar" id="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Floating Buttons -->
+    <a href="tel:+15550192834" id="sticky-call" class="float-btn group" aria-label="Call Us">
+        <i class="ph-fill ph-phone text-2xl group-hover:rotate-12 transition-transform"></i>
+    </a>
+    <button id="scroll-top" class="float-btn" aria-label="Scroll to Top">
+        <i class="ph ph-arrow-up text-xl"></i>
+    </button>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-v-accent z-40 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-center items-center overflow-y-auto">
+        <nav class="flex flex-col gap-6 text-center w-full max-w-md px-6 py-12">
+            <a href="index.html"
+                class="mobile-link text-4xl font-display font-bold text-v-dark hover:text-v-green transition-colors">Home</a>
+            <div class="w-full flex flex-col items-center">
+                <button id="mobile-services-toggle"
+                    class="text-4xl font-display font-bold text-v-dark hover:text-v-green transition-colors flex items-center gap-3">
+                    Services <i class="ph ph-caret-down text-3xl transition-transform duration-300"></i>
+                </button>
+                <div id="mobile-services-list"
+                    class="hidden flex-col gap-4 mt-6 w-full bg-white/30 rounded-xl py-6 backdrop-blur-sm border border-white/20">
+                    <a href="services.html"
+                        class="text-xl font-display text-v-dark/80 hover:text-v-dark block mobile-link">All Services</a>
+                    <a href="service-detail.html"
+                        class="text-xl font-display text-v-dark/80 hover:text-v-dark block mobile-link">Landscape
+                        Design</a>
+                    <a href="service-detail.html"
+                        class="text-xl font-display text-v-dark/80 hover:text-v-dark block mobile-link">Estate
+                        Maintenance</a>
+                </div>
+            </div>
+            <a href="about-us.html"
+                class="mobile-link text-4xl font-display font-bold text-v-dark hover:text-v-green transition-colors">About</a>
+            <a href="contact-us.html"
+                class="mobile-link text-4xl font-display font-bold text-v-dark hover:text-v-green transition-colors">Contact</a>
+        </nav>
+        <div class="mt-12 flex gap-6 text-v-dark text-2xl">
+            <a href="#"><i class="ph ph-instagram-logo"></i></a>
+            <a href="#"><i class="ph ph-x-logo"></i></a>
+            <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-6 px-6 md:px-12 text-white">
+        <div class="max-w-8xl mx-auto flex justify-between items-center">
+            <a href="index.html"
+                class="nav-blend-target text-2xl font-display font-bold tracking-widest z-50 relative logo-text mix-blend-difference">VERDANT<span
+                    class="text-v-accent">.</span></a>
+
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="index.html"
+                    class="nav-blend-target uppercase text-xs tracking-widest font-semibold hover:text-v-accent transition-colors mix-blend-difference">Home</a>
+                <div class="group relative py-4">
+                    <a href="services.html"
+                        class="nav-blend-target flex items-center gap-1 uppercase text-xs tracking-widest font-semibold hover:text-v-accent transition-colors mix-blend-difference">
+                        Services <i class="ph ph-caret-down"></i>
+                    </a>
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-64 bg-v-light text-v-dark p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-2xl border-l-4 border-v-green rounded-sm">
+                        <a href="services.html"
+                            class="block py-2 hover:translate-x-2 transition-transform font-medium border-b border-gray-200 mb-2">Overview</a>
+                        <a href="service-detail.html"
+                            class="block py-2 hover:translate-x-2 transition-transform font-medium text-sm text-gray-600 hover:text-v-dark">Landscape
+                            Design</a>
+                        <a href="service-detail.html"
+                            class="block py-2 hover:translate-x-2 transition-transform font-medium text-sm text-gray-600 hover:text-v-dark">Estate
+                            Maintenance</a>
+                        <a href="service-detail.html"
+                            class="block py-2 hover:translate-x-2 transition-transform font-medium text-sm text-gray-600 hover:text-v-dark">Hardscaping</a>
+                    </div>
+                </div>
+                <a href="about-us.html"
+                    class="nav-blend-target uppercase text-xs tracking-widest font-semibold hover:text-v-accent transition-colors mix-blend-difference">About</a>
+                <a href="contact-us.html"
+                    class="nav-blend-target uppercase text-xs tracking-widest font-semibold hover:text-v-accent transition-colors mix-blend-difference">Contact</a>
+                <a href="quote.html"
+                    class="nav-blend-target border border-white/30 px-6 py-2 uppercase text-xs tracking-widest font-semibold hover:bg-white hover:text-v-dark transition-all duration-300 mix-blend-difference">Get
+                    Quote</a>
+            </nav>
+
+            <button id="hamburger"
+                class="nav-blend-target md:hidden z-50 w-8 h-8 flex flex-col justify-center gap-1.5 focus:outline-none mix-blend-difference">
+                <span class="hamburger-line line-1 w-full h-0.5 bg-current block"></span>
+                <span class="hamburger-line line-2 w-3/4 ml-auto h-0.5 bg-current block"></span>
+                <span class="hamburger-line line-3 w-full h-0.5 bg-current block"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen w-full overflow-hidden bg-v-dark">
+        <!-- Background Image Parallax -->
+        <div class="absolute inset-0 z-0 scale-110 hero-img-container">
+            <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Verdant%20%26%20Stone%20Lawn%20Care%20Website/beautifully-maintained-green-lawn.jpg" alt="Luxury Lawn"
+                class="w-full h-full object-cover opacity-60 hero-mask">
+        </div>
+
+        <div class="relative z-10 h-full flex flex-col justify-center px-6 md:px-12 max-w-8xl mx-auto">
+            <div class="overflow-hidden">
+                <h2 class="text-v-accent font-sans uppercase tracking-[0.3em] text-sm mb-4 hero-reveal">Since 2014 — Top
+                    Quality Care</h2>
+            </div>
+            <div class="overflow-hidden">
+                <h1
+                    class="text-white font-display text-5xl md:text-7xl lg:text-9xl font-light uppercase leading-[0.9] mb-8 hero-reveal">
+                    Your Dream <br>
+                    <span class="font-bold text-v-green">Garden.</span>
+                </h1>
+            </div>
+
+            <div class="flex hero-reveal">
+                <p class="text-gray-300 max-w-md font-sans font-light leading-relaxed">
+                    We make your outdoors look amazing. Professional lawn care and landscape design for your home.
+                </p>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce">
+            <i class="ph ph-arrow-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Marquee Strip -->
+    <div class="bg-v-green py-4 overflow-hidden whitespace-nowrap border-y border-v-accent/10">
+        <div class="inline-block animate-marquee">
+            <span class="text-v-accent font-display text-4xl uppercase font-bold mx-8 opacity-50">Lawn Care</span>
+            <span class="text-v-accent font-display text-4xl uppercase font-bold mx-8 opacity-50">•</span>
+            <span class="text-v-accent font-display text-4xl uppercase font-bold mx-8 opacity-50">Garden Design</span>
+            <span class="text-v-accent font-display text-4xl uppercase font-bold mx-8 opacity-50">•</span>
+            <span class="text-v-accent font-display text-4xl uppercase font-bold mx-8 opacity-50">Organic
+                Treatment</span>
+            <span class="text-v-accent font-display text-4xl uppercase font-bold mx-8 opacity-50">•</span>
+            <span class="text-v-accent font-display text-4xl uppercase font-bold mx-8 opacity-50">Patios & Paths</span>
+            <span class="text-v-accent font-display text-4xl uppercase font-bold mx-8 opacity-50">•</span>
+        </div>
+    </div>
+
+    <!-- About / Introduction -->
+    <section id="about" class="py-24 md:py-32 px-6 md:px-12 bg-v-light">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Verdant%20%26%20Stone%20Lawn%20Care%20Website/landscaper-working.jpg" alt="Landscaper working"
+                    class="w-full h-[600px] object-cover transition-all duration-400 ease-in-out gs-reveal-img">
+            </div>
+
+            <div class="gs-reveal-text">
+                <h4 class="text-v-green font-bold uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
+                    <span class="w-8 h-[1px] bg-v-green inline-block"></span> Our Mission
+                </h4>
+                <h2 class="text-4xl md:text-5xl font-display font-medium text-v-dark mb-8 leading-tight">
+                    We Love <br> <span class="italic font-serif">Nature.</span>
+                </h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Verdant & Stone is more than just a lawn mowing service. We take care of your entire yard. We
+                    believe your garden is an important part of your home.
+                </p>
+                <p class="text-gray-600 mb-10 leading-relaxed">
+                    We use expert plant knowledge and great design to make sure your garden stays healthy and looks
+                    perfect all year round.
+                </p>
+
+                <div class="grid grid-cols-2 gap-8 border-t border-gray-200 pt-8">
+                    <div>
+                        <span class="block text-4xl font-display font-bold text-v-green mb-1 counter"
+                            data-target="150">0</span>
+                        <span class="text-xs uppercase tracking-widest text-gray-500">Happy Clients</span>
+                    </div>
+                    <div>
+                        <span class="block text-4xl font-display font-bold text-v-green mb-1 counter"
+                            data-target="12">0</span>
+                        <span class="text-xs uppercase tracking-widest text-gray-500">Awards Won</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-v-dark text-v-light relative">
+        <div class="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
+            <i class="ph ph-plant text-9xl"></i>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/10 pb-8">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-display font-medium mb-2">What We Do</h2>
+                    <p class="text-gray-400">Complete care for your home's exterior.</p>
+                </div>
+                <a href="services.html"
+                    class="hidden md:flex items-center gap-2 text-v-accent hover:text-white transition-colors mt-6 md:mt-0">
+                    View All Services <i class="ph ph-arrow-up-right"></i>
+                </a>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Large Card -->
+                <div
+                    class="md:col-span-2 bg-white/5 border border-white/10 p-8 md:p-12 hover:bg-white/10 transition-colors duration-500 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-12">
+                        <i class="ph ph-tree text-5xl text-v-accent group-hover:scale-110 transition-transform"></i>
+                        <span
+                            class="text-xs border border-white/20 px-3 py-1 rounded-full uppercase tracking-wider">Most
+                            Popular</span>
+                    </div>
+                    <h3 class="text-3xl font-display mb-4">Garden Design</h3>
+                    <p class="text-gray-400 max-w-md group-hover:text-gray-200 transition-colors">
+                        We plan and build your entire garden. We choose the right plants, build paths, and add lighting
+                        to create a beautiful outdoor space that fits your lifestyle.
+                    </p>
+                </div>
+
+                <!-- Tall Card -->
+                <div
+                    class="md:row-span-2 bg-v-green border border-white/10 p-8 md:p-12 flex flex-col justify-between hover:bg-emerald-800 transition-colors duration-500 group cursor-pointer">
+                    <div>
+                        <i
+                            class="ph ph-drop text-5xl text-white mb-8 group-hover:rotate-12 transition-transform inline-block"></i>
+                        <h3 class="text-3xl font-display mb-4">Watering Systems</h3>
+                        <p class="text-emerald-100/80 mb-6">
+                            Save water and keep plants healthy. We install automatic systems that you can control with
+                            your phone.
+                        </p>
+                    </div>
+                    <ul class="space-y-3 text-sm border-t border-white/20 pt-6">
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-v-accent"></i> Drip Systems</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-v-accent"></i> Rain Sensors</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-v-accent"></i> Easy Maintenance
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Medium Card -->
+                <div
+                    class="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors duration-500 group cursor-pointer">
+                    <i
+                        class="ph ph-scissors text-4xl text-v-accent mb-6 group-hover:scale-110 transition-transform inline-block"></i>
+                    <h3 class="text-2xl font-display mb-3">Lawn Mowing</h3>
+                    <p class="text-gray-400 text-sm">
+                        Weekly mowing and edging. We keep your grass looking neat, tidy, and green like a golf course.
+                    </p>
+                </div>
+
+                <!-- Medium Card -->
+                <div
+                    class="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors duration-500 group cursor-pointer">
+                    <i
+                        class="ph ph-flower-tulip text-4xl text-v-accent mb-6 group-hover:scale-110 transition-transform inline-block"></i>
+                    <h3 class="text-2xl font-display mb-3">Seasonal Flowers</h3>
+                    <p class="text-gray-400 text-sm">
+                        We plant new flowers every season so your garden is always colorful and welcoming.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery Parallax -->
+    <section id="projects" class="py-32 bg-v-light overflow-hidden">
+        <div class="max-w-8xl mx-auto px-6 mb-16 text-center">
+            <span class="text-v-green uppercase tracking-[0.2em] text-sm font-bold">Portfolio</span>
+            <h2 class="text-4xl md:text-5xl font-display text-v-dark mt-2">Recent Transformations</h2>
+        </div>
+
+        <!-- Horizontal Scroll Container (controlled by GSAP) -->
+        <div class="gallery-wrapper flex gap-8 px-6 md:px-12 w-fit">
+
+            <div class="relative w-[80vw] md:w-[40vw] aspect-[4/3] group overflow-hidden flex-shrink-0">
+                <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Verdant%20%26%20Stone%20Lawn%20Care%20Website/highland-style-house.jpg"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    alt="Project 1">
+                <div
+                    class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/80 to-transparent text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 class="font-display text-2xl">The Highland House</h3>
+                    <p class="text-sm text-gray-300">New Patio & Planting</p>
+                </div>
+            </div>
+
+            <div class="relative w-[80vw] md:w-[40vw] aspect-[4/3] group overflow-hidden flex-shrink-0">
+                <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Verdant%20%26%20Stone%20Lawn%20Care%20Website/courtyard.jpg"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    alt="Project 2">
+                <div
+                    class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/80 to-transparent text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 class="font-display text-2xl">Modern Courtyard</h3>
+                    <p class="text-sm text-gray-300">Minimalist Design</p>
+                </div>
+            </div>
+
+            <div class="relative w-[80vw] md:w-[40vw] aspect-[4/3] group overflow-hidden flex-shrink-0">
+                <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Verdant%20%26%20Stone%20Lawn%20Care%20Website/oakwood-manor.jpg"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    alt="Project 3">
+                <div
+                    class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/80 to-transparent text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 class="font-display text-2xl">Oakwood Manor</h3>
+                    <p class="text-sm text-gray-300">Weekly Care & Lights</p>
+                </div>
+            </div>
+
+            <!-- New Image 4 -->
+            <div class="relative w-[80vw] md:w-[40vw] aspect-[4/3] group overflow-hidden flex-shrink-0">
+                <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Verdant%20%26%20Stone%20Lawn%20Care%20Website/seasonal-flowers.jpg"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    alt="Project 4">
+                <div
+                    class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/80 to-transparent text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 class="font-display text-2xl">Riverside Gardens</h3>
+                    <p class="text-sm text-gray-300">Hardscape & Stone</p>
+                </div>
+            </div>
+
+            <!-- New Image 5 -->
+            <div class="relative w-[80vw] md:w-[40vw] aspect-[4/3] group overflow-hidden flex-shrink-0">
+                <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Verdant%20%26%20Stone%20Lawn%20Care%20Website/urban-sky-terrace.jpg"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    alt="Project 5">
+                <div
+                    class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/80 to-transparent text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 class="font-display text-2xl">Urban Sky Terrace</h3>
+                    <p class="text-sm text-gray-300">Rooftop Oasis</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Testimonials / Quote -->
+    <section class="py-24 bg-v-accent text-v-dark relative overflow-hidden">
+        <div class="absolute -right-20 -top-20 text-white/20">
+            <i class="ph ph-quotes text-[15rem]"></i>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div id="testimonial-container" class="min-h-[200px] flex items-center justify-center">
+                <!-- Content injected via JS -->
+            </div>
+
+            <div class="flex justify-center gap-4 mt-12">
+                <button id="prev-testim"
+                    class="w-12 h-12 border border-v-dark/20 rounded-full flex items-center justify-center hover:bg-v-dark hover:text-white transition-all"><i
+                        class="ph ph-arrow-left"></i></button>
+                <button id="next-testim"
+                    class="w-12 h-12 border border-v-dark/20 rounded-full flex items-center justify-center hover:bg-v-dark hover:text-white transition-all"><i
+                        class="ph ph-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative py-24 bg-v-dark text-white">
+        <div class="absolute inset-0 z-0">
+            <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Verdant%20%26%20Stone%20Lawn%20Care%20Website/automated-garden-watering-system.jpg" class="w-full h-full object-cover opacity-20"
+                alt="Texture">
+            <div class="absolute inset-0 bg-gradient-to-r from-v-dark via-v-dark/90 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div>
+                <h2 class="text-5xl md:text-7xl font-display mb-6">Let's Talk About <br> Your Garden.</h2>
+                <p class="text-gray-400 mb-12 max-w-md">
+                    Ready to upgrade your home? Book a meeting with our garden experts today.
+                </p>
+
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-v-green/20 flex items-center justify-center rounded-sm text-v-accent">
+                            <i class="ph ph-map-pin text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold uppercase text-sm mb-1">Office</h4>
+                            <p class="text-gray-400 text-sm">890 Botanical Blvd, Suite 200<br>Portland, OR 97209</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-v-green/20 flex items-center justify-center rounded-sm text-v-accent">
+                            <i class="ph ph-phone text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold uppercase text-sm mb-1">Phone</h4>
+                            <p class="text-gray-400 text-sm">+1 (555) 019-2834</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="bg-white/5 backdrop-blur-sm p-8 md:p-10 border border-white/10">
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                    <div class="group">
+                        <label
+                            class="block text-xs uppercase tracking-widest text-gray-500 mb-2 group-focus-within:text-v-accent transition-colors">First
+                            Name</label>
+                        <input type="text"
+                            class="w-full bg-transparent border-b border-white/20 py-2 focus:outline-none focus:border-v-accent text-white transition-colors">
+                    </div>
+                    <div class="group">
+                        <label
+                            class="block text-xs uppercase tracking-widest text-gray-500 mb-2 group-focus-within:text-v-accent transition-colors">Last
+                            Name</label>
+                        <input type="text"
+                            class="w-full bg-transparent border-b border-white/20 py-2 focus:outline-none focus:border-v-accent text-white transition-colors">
+                    </div>
+                </div>
+
+                <div class="mb-6 group">
+                    <label
+                        class="block text-xs uppercase tracking-widest text-gray-500 mb-2 group-focus-within:text-v-accent transition-colors">Email
+                        Address</label>
+                    <input type="email"
+                        class="w-full bg-transparent border-b border-white/20 py-2 focus:outline-none focus:border-v-accent text-white transition-colors">
+                </div>
+
+                <div class="mb-6 group">
+                    <label
+                        class="block text-xs uppercase tracking-widest text-gray-500 mb-2 group-focus-within:text-v-accent transition-colors">What
+                        do you need?</label>
+                    <select
+                        class="w-full bg-transparent border-b border-white/20 py-2 focus:outline-none focus:border-v-accent text-white transition-colors appearance-none">
+                        <option class="text-black">Garden Design</option>
+                        <option class="text-black">Lawn Mowing</option>
+                        <option class="text-black">Patios & Paths</option>
+                    </select>
+                </div>
+
+                <div class="mb-10 group">
+                    <label
+                        class="block text-xs uppercase tracking-widest text-gray-500 mb-2 group-focus-within:text-v-accent transition-colors">Message</label>
+                    <textarea rows="3"
+                        class="w-full bg-transparent border-b border-white/20 py-2 focus:outline-none focus:border-v-accent text-white transition-colors"></textarea>
+                </div>
+
+                <button type="button"
+                    class="w-full bg-v-green text-white py-4 uppercase font-bold tracking-widest hover:bg-emerald-700 transition-colors">
+                    Get Free Quote
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white pt-24 pb-12 border-t border-white/10">
+        <div class="max-w-8xl mx-auto px-6 md:px-12">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <!-- Col 1 -->
+                <div class="md:col-span-1">
+                    <a href="index.html" class="text-2xl font-display font-bold tracking-widest block mb-8">
+                        VERDANT<span class="text-v-green">.</span>
+                    </a>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                        Raising the standard in lawn care and garden design. We use eco-friendly methods to make your
+                        home look its best.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all"><i
+                                class="ph ph-instagram-logo"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all"><i
+                                class="ph ph-facebook-logo"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all"><i
+                                class="ph ph-pinterest-logo"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-xs text-v-accent mb-6">Quick Links</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="gallery.html" class="hover:text-white transition-colors">Gallery</a></li>
+                        <li><a href="booking.html" class="hover:text-white transition-colors">Booking</a></li>
+                        <li><a href="testimonials.html" class="hover:text-white transition-colors">Testimonials</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Blogs</a></li>
+                        <li><a href="faqs.html" class="hover:text-white transition-colors">FAQs</a></li>
+                        <li><a href="404.html" class="hover:text-white transition-colors">404</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-xs text-v-accent mb-6">Contact</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li>890 Botanical Blvd, Portland</li>
+                        <li>+1 (555) 019-2834</li>
+                        <li>hello@verdantstone.com</li>
+                    </ul>
+                </div>
+
+                <!-- Col 4 -->
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-xs text-v-accent mb-6">Newsletter</h4>
+                    <p class="text-gray-500 text-xs mb-4">Get seasonal tips and garden ideas.</p>
+                    <div class="flex border-b border-white/20 pb-2">
+                        <input type="email" placeholder="Email Address"
+                            class="bg-transparent w-full focus:outline-none text-sm">
+                        <button class="text-v-accent hover:text-white uppercase text-xs font-bold">Join</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Big Footer -->
+            <div class="border-t border-white/10 pt-12 flex flex-col md:flex-row justify-between items-end">
+                <div class="w-full text-center md:text-left">
+                    <h2
+                        class="text-[12vw] leading-none font-display font-bold text-white/5 select-none pointer-events-none">
+                        VERDANT
+                    </h2>
+                </div>
+                <div class="flex flex-col md:items-end gap-2 mt-4 md:mt-0">
+                    <div class="flex gap-6 text-xs text-gray-600 uppercase tracking-widest whitespace-nowrap">
+                        <a href="privacy.html">Privacy</a>
+                        <a href="terms.html">Terms</a>
+                        <span>© 2025 Verdant & Stone</span>
+                    </div>
+                    <!-- Added Credit -->
+                    <div class="flex items-center gap-1 text-xs text-gray-500 font-medium">
+                        Made with <i class="ph-fill ph-heart text-red-600 animate-pulse"></i> by codewithfaraz
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
